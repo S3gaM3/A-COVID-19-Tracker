@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { Container, Grid, Box, Typography, Paper } from '@mui/material';
 import { CovidData } from '../types/covid';
-import GlobalStats from './GlobalStats';
-import CountryTable from './CountryTable';
-import Charts from './Charts';
+// import GlobalStats from './GlobalStats';
+// import CountryTable from './CountryTable';
+// import Charts from './Charts';
+
+const GlobalStats = React.lazy(() => import('./GlobalStats'));
+const CountryTable = React.lazy(() => import('./CountryTable'));
+const Charts = React.lazy(() => import('./Charts'));
 
 /**
  * Пропсы для компонента Dashboard
@@ -47,10 +51,12 @@ const Dashboard: React.FC<DashboardProps> = ({ data }) => {
       </Box>
 
       {/* Основная сетка компонентов */}
-      <Grid container spacing={3}>
+      <Grid container spacing={4}>
         {/* Секция глобальной статистики - занимает всю ширину */}
         <Grid item xs={12}>
-          <GlobalStats globalData={data.global} />
+          <Suspense fallback={<div>Загрузка статистики...</div>}>
+            <GlobalStats globalData={data.global} />
+          </Suspense>
         </Grid>
 
         {/* Секция графиков - 8/12 на больших экранах */}
@@ -63,11 +69,13 @@ const Dashboard: React.FC<DashboardProps> = ({ data }) => {
             <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
               Тренды COVID-19
             </Typography>
-            <Charts 
-              countries={data.countries.slice(0, 10)} // Показываем топ-10 стран
-              selectedCountries={selectedCountries}
-              onCountrySelect={setSelectedCountries}
-            />
+            <Suspense fallback={<div>Загрузка графиков...</div>}>
+              <Charts 
+                countries={data.countries.slice(0, 10)} // Показываем топ-10 стран
+                selectedCountries={selectedCountries}
+                onCountrySelect={setSelectedCountries}
+              />
+            </Suspense>
           </Paper>
         </Grid>
 
@@ -81,11 +89,13 @@ const Dashboard: React.FC<DashboardProps> = ({ data }) => {
             <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
               Топ пострадавших стран
             </Typography>
-            <CountryTable 
-              countries={data.countries.slice(0, 10)} // Топ-10 стран
-              selectedCountries={selectedCountries}
-              onCountrySelect={setSelectedCountries}
-            />
+            <Suspense fallback={<div>Загрузка таблицы...</div>}>
+              <CountryTable 
+                countries={data.countries.slice(0, 10)} // Топ-10 стран
+                selectedCountries={selectedCountries}
+                onCountrySelect={setSelectedCountries}
+              />
+            </Suspense>
           </Paper>
         </Grid>
 
@@ -99,12 +109,14 @@ const Dashboard: React.FC<DashboardProps> = ({ data }) => {
             <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
               Все страны
             </Typography>
-            <CountryTable 
-              countries={data.countries} // Все страны
-              selectedCountries={selectedCountries}
-              onCountrySelect={setSelectedCountries}
-              showAll
-            />
+            <Suspense fallback={<div>Загрузка таблицы...</div>}>
+              <CountryTable 
+                countries={data.countries} // Все страны
+                selectedCountries={selectedCountries}
+                onCountrySelect={setSelectedCountries}
+                showAll
+              />
+            </Suspense>
           </Paper>
         </Grid>
       </Grid>

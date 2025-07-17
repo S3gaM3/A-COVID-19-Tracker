@@ -170,7 +170,7 @@ env:
 - uses: actions/cache@v3
   with:
     path: ~/.npm
-    key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+    key: {% raw %}${{ runner.os }}{% endraw %}-node-{% raw %}${{ hashFiles('**/package-lock.json') }}{% endraw %}
 ```
 
 ## 🎉 Готово!

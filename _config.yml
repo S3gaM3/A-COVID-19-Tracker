@@ -1,0 +1,43 @@
+# Jekyll configuration for GitHub Pages
+# Disable Liquid processing in markdown files to prevent conflicts with code examples
+
+# Disable Liquid processing in markdown files
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+# Disable Jekyll processing for specific files
+exclude:
+  - node_modules
+  - dist
+  - .git
+  - .github
+
+# Disable Liquid processing in documentation files
+include:
+  - _config.yml
+
+# Theme settings
+theme: jekyll-theme-primer
+
+# Disable automatic page generation
+plugins:
+  - jekyll-github-metadata
+  - jekyll-seo-tag
+  - jekyll-coffeescript
+  - jekyll-commonmark-ghpages
+  - jekyll-gist
+  - jekyll-paginate
+  - jekyll-relative-links
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-default-layout
+  - jekyll-titles-from-headings
+
+# Disable Liquid processing in specific files
+liquid:
+  error_mode: warn 

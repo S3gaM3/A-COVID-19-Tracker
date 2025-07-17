@@ -204,13 +204,13 @@ const StatCard: React.FC<StatCardProps> = ({
   icon, 
   subtitle 
 }) => (
-  <Card sx={{ border: `2px solid ${color}` }}>
+  <Card sx={% raw %}{{ border: `2px solid ${color}` }}{% endraw %}>
     <CardContent>
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Box sx={{ color, mr: 1 }}>{icon}</Box>
+      <Box sx={% raw %}{{ display: 'flex', alignItems: 'center' }}{% endraw %}>
+        <Box sx={% raw %}{{ color, mr: 1 }}{% endraw %}>{icon}</Box>
         <Typography variant="h6">{title}</Typography>
       </Box>
-      <Typography variant="h4" sx={{ color }}>
+      <Typography variant="h4" sx={% raw %}{{ color }}{% endraw %}>
         {value}
       </Typography>
       {subtitle && (
@@ -272,7 +272,7 @@ const CountryTable: React.FC<CountryTableProps> = ({
 
 ```tsx
 // Встроенные стили
-<Box sx={{ 
+<Box sx={% raw %}{{ 
   display: 'flex',
   alignItems: 'center',
   gap: 2,
@@ -280,7 +280,7 @@ const CountryTable: React.FC<CountryTableProps> = ({
   backgroundColor: 'primary.main',
   borderRadius: 2,
   boxShadow: 3
-}}>
+}}{% endraw %}>
   Content
 </Box>
 
@@ -316,13 +316,13 @@ const theme = createTheme({
 ### 3. Эффекты и анимации
 
 ```tsx
-<Card sx={{ 
+<Card sx={% raw %}{{ 
   transition: 'transform 0.2s ease-in-out',
   '&:hover': {
     transform: 'translateY(-4px)',
     boxShadow: '0 8px 25px rgba(0,0,0,0.2)'
   }
-}}>
+}}{% endraw %}>
   {/* Содержимое карточки */}
 </Card>
 ```

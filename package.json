@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A comprehensive COVID-19 tracking application built with React and TypeScript",
   "main": "index.js",
-  "homepage": "https://github.com/S3gaM3/A-COVID-19-Tracker#readme",
+  "homepage": "https://S3gaM3.github.io/A-COVID-19-Tracker",
   "scripts": {
     "start": "webpack serve --mode development --open",
     "build": "webpack --mode production",

@@ -1,0 +1,2 @@
+# This file tells GitHub Pages not to process this site with Jekyll
+# It prevents conflicts with React/TypeScript code examples in markdown files 
